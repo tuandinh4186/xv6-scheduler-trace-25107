@@ -5,10 +5,11 @@
 // Định nghĩa tên trạng thái để chuyển từ số sang chuỗi
 char *state_names[] = {
   [0] "UNUSED",
-  [1] "SLEEPING",
-  [2] "RUNNABLE",
-  [3] "RUNNING",
-  [4] "ZOMBIE"
+  [1] "USED",
+  [2] "SLEEPING",
+  [3] "RUNNABLE",
+  [4] "RUNNING",
+  [5] "ZOMBIE"
 };
 
 // Khai báo bộ đệm sự kiện (nên để static để tránh tràn stack)
@@ -33,8 +34,8 @@ int main(void) {
     int nw = buf[i].new_state;
 
     // Giới hạn giá trị để tránh truy cập ngoài mảng state_names
-    if(o < 0 || o > 4) o = 0;
-    if(nw < 0 || nw > 4) nw = 0;
+    if(o < 0 || o > 5) o = 0;
+    if(nw < 0 || nw > 5) nw = 0;
 
     // In theo đúng format CSV: tick,pid,old,new
     printf("%d,%d,%s,%s\n",
