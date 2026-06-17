@@ -363,6 +363,10 @@ kexit(int status)
   wakeup(p->parent);
   
   acquire(&p->lock);
+  //THEM
+  int old_state = p->state;
+  // BAT ZOMBIE
+  log_trace_event(p->pid, old_state, ZOMBIE);
 
   p->xstate = status;
   p->state = ZOMBIE;
@@ -403,6 +407,8 @@ kwait(uint64 addr)
             release(&wait_lock);
             return -1;
           }
+          // ---> DÒNG NÀY ĐỂ KẾT THÚC ZOMBIE (Chuyển về UNUSED)
+          log_trace_event(pp->pid, ZOMBIE, UNUSED);
           freeproc(pp);
           release(&pp->lock);
           release(&wait_lock);
