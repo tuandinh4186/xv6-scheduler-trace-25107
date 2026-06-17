@@ -12,7 +12,7 @@ struct trace_event {
 
 // Tên state theo index của enum procstate trong Xv6
 static char *state_names[] = {
-  "UNUSED", "SLEEPING", "RUNNABLE", "RUNNING", "ZOMBIE"
+  "UNUSED", "USED", "SLEEPING", "RUNNABLE", "RUNNING", "ZOMBIE"
 };
 
 #endif
